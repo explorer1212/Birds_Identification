@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Birds_Identification_Front_End:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Birds_Identification_Front_End_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Birds_Identification_Front_End/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Birds_Identification_Front_End" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
