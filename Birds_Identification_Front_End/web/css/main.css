@@ -1,15 +1,30 @@
-.el-header, .el-footer {
-    background-color: #B3C0D1;
+* {
+    /*去除边框*/
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+#Vue_index,
+.el-container {
+    height: 100%;
+    width: 100%;
+}
+
+.el-header {
+    background-color: #409EFF;
     color: #333;
     text-align: center;
     line-height: 30px;
 }
 
-.footer {
-    width: 100px;
-    height: 50px;
-    background: black;
-    margin-top: -50px;
+.el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
 }
 
 .el-aside {
@@ -24,6 +39,22 @@
     color: #333;
     text-align: center;
     line-height: 160px;
+    height: auto;
+}
+
+.box-card {
+    /*Element上card的默认属性*/
+    margin: 25px 50px;
+    width: 480px;
+    height: 400px;
+    border-radius: 15px;
+}
+
+.card-position {
+    /*让两个card可以并排显示*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 body > .el-container {
@@ -37,4 +68,25 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
     line-height: 320px;
+}
+
+header {
+    /*在网页醒目显示名称*/
+    padding-top: 2%;
+    color: #fff;
+    height: 18%;
+    width: 100%;
+    background-color: #5A9FFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    /*el-main中的组件，用于适应两个card的排列位置*/
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center
 }
