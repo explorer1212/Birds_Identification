@@ -3,4 +3,34 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/index.html</welcome-file>
+    </welcome-file-list>
+
+
+    <servlet>
+        <display-name>UploadServlet</display-name>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.ikb.servlet.UploadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>getImg</display-name>
+        <servlet-name>getImg</servlet-name>
+        <servlet-class>com.ikb.servlet.getImg</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getImg</servlet-name>
+        <url-pattern>/getImg</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
+
