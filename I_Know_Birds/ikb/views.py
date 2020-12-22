@@ -19,7 +19,8 @@ def add(request):
             # user = User(name=name, headimg=headimg)
             user = User(headimg=headimg)
             user.save()
-            bird_name = headimg
+            bird_img_path = 'media/img/' + headimg.name
+
     af = AddForm()
 
     context = {'site_name': 'I Know Birds 鸟类识别平台',
