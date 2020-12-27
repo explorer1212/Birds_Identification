@@ -4,8 +4,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {#引入CSS文件#}
-    {#<link rel="stylesheet" type="text/css" href="style.css">#}
     <title>I Know Birds 鸟类识别平台</title>
 
     <style>
@@ -92,10 +90,10 @@
 
         <div id="card-center">
             <br>
-            <form method="post" enctype="multipart/form-data" action="{% url 'ikb:add' %}">
+            <form method="post" enctype="multipart/form-data" action="{% url 'ikb:ikb_index' %}">
                 {% csrf_token %}
                 {{ af.as_p }}
-                <input type="submit" value="OK"/>
+                <input type="submit" value="识别"/>
             </form>
             <br>
             <img height="200" src="/media/{{ user.headimg }}">
