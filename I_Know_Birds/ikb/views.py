@@ -4,6 +4,24 @@ from django.shortcuts import render
 from .models import User
 from .forms import AddForm
 
+from keras.models import load_model
+from keras.models import Model
+import keras
+import numpy as np
+
+bird_kinds_txt = 'media/classes.txt'
+
+f = open(bird_kinds_txt, 'r')
+data = f.readlines()
+f.close()
+
+bird_kinds = {}
+
+for i in data:
+    i = i.split('.')
+    i[1] = i[1].replace('\n', '')
+    bird_kinds[int(i[0])] = i[1]
+
 
 # Create your views here.
 def add(request):
@@ -19,7 +37,29 @@ def add(request):
             # user = User(name=name, headimg=headimg)
             user = User(headimg=headimg)
             user.save()
+            # bird_img_path = 'E:/Projects/SoftwareEngineering/Birds_Identification/I_Know_Birds/media/img/' + headimg.name
             bird_img_path = 'media/img/' + headimg.name
+
+            # image_temp = Image.open(bird_img_path)
+
+            filepath = "media/bvgg16.hdf5"
+            model = load_model(filepath)
+            model.summary()
+            for i in model.layers:
+                print(i.name)
+
+            imgpath = bird_img_path
+            test_img = keras.preprocessing.image.load_img(imgpath, target_size=(224, 224, 3))
+            test_img = keras.preprocessing.image.img_to_array(test_img)
+            test_img = test_img
+            test_img = np.expand_dims(test_img, 0)
+            pred = model.predict(test_img)
+            result = max(pred[0])
+            count = pred.argmax()
+            print(result)
+            print(count)
+
+            bird_name = bird_kinds[count]
 
     af = AddForm()
 
