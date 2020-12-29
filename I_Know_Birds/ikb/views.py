@@ -25,15 +25,16 @@ for num_name in bird_kinds_data:
 def ikb_index(request):
     user = 0
     bird_name = ''
-    af = AddForm()
+    bird_probability = ''
+    add_form = AddForm()
     # 判断是否为 post 方法提交
     if request.method == "POST":
         # POST时也就是有图片上传，此时需要进行鸟的识别
-        af = AddForm(request.POST, request.FILES)
+        add_form = AddForm(request.POST, request.FILES)
         # 判断表单值是否合法
-        if af.is_valid():
-            # name = af.cleaned_data['name']
-            bird_img = af.cleaned_data['Bird_Img']
+        if add_form.is_valid():
+            # name = add_form.cleaned_data['name']
+            bird_img = add_form.cleaned_data['Bird_Img']
             user = User(headimg=bird_img)
             user.save()
             bird_img_path = 'media/img/' + bird_img.name
@@ -50,20 +51,26 @@ def ikb_index(request):
             test_img = test_img
             test_img = np.expand_dims(test_img, 0)
             pred = model.predict(test_img)
-            # result = max(pred[0])
+            # print(pred)
+            result = max(pred[0])
             count = pred.argmax()
+            count += 1
+            # 控制台输出查看部分信息
+            print(result)  # 可能性(概率)
+            print(count)  # 识别结果：序号
 
             # count即识别出的鸟类序号，在字典中找名字
-            if count == 0 or count > 200:
-                bird_name = '识别失败'
-            else:
-                bird_name = bird_kinds[count]
+            bird_name = bird_kinds[count]
+            bird_probability = result
+            bird_probability *= 100
+            bird_probability = str(bird_probability) + '%'
 
-    context = {'site_name': 'I Know Birds 鸟类识别平台',
-               'github_url': 'https://github.com/MakeItPossible-MJT/Birds_Identification',
-               'copyright': 'I Know Birds 鸟类识别平台 - 软件工程第五小组',
-               "af": af,
-               "user": user,
-               "bird_name": bird_name}
+    context = {
+        'github_url': 'https://github.com/MakeItPossible-MJT/Birds_Identification',
+        "add_form": add_form,
+        "user": user,
+        "bird_name": bird_name,
+        "bird_probability": bird_probability
+    }
 
     return render(request, 'ikb/index.html', context)

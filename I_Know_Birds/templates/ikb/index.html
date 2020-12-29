@@ -60,9 +60,9 @@
 
         #analysis-result {
             border-radius: 25px;
-            border: 2px solid #8AC007;
-            width: 100px;
-            padding: 20px;
+            border: 2px solid #f91505;
+            width: 80px;
+            padding: 5px;
         }
 
         #footer {
@@ -92,7 +92,7 @@
             <br>
             <form method="post" enctype="multipart/form-data" action="{% url 'ikb:ikb_index' %}">
                 {% csrf_token %}
-                {{ af.as_p }}
+                {{ add_form.as_p }}
                 <input type="submit" value="识别"/>
             </form>
             <br>
@@ -105,6 +105,9 @@
                 识别结果
             </p>
             <p>：{{ bird_name }}</p>
+            <br><br>
+            <p id="analysis-result"> 可能性</p>
+            <p>：{{ bird_probability }}</p>
         </div>
     </div>
 
